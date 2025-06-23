@@ -7,6 +7,12 @@ services:
     volumes:
       - ollama:/root/.ollama
     tty: true
+    entrypoint:
+      [
+        "/bin/sh",
+        "-c",
+        "ollama serve & sleep 5 && ollama pull deepseek-r1:1.5b && wait",
+      ]
     restart: unless-stopped
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
